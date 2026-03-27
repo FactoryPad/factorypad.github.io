@@ -1,28 +1,40 @@
-index_html = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prod | Agentic AI Social Media Management</title>
-  <meta name="description" content="Prod is an agentic AI social media management app for drafting, scheduling, reviewing, and publishing content across connected platforms." />
+  <meta
+    name="description"
+    content="Prod is an agentic AI social media management app for drafting, scheduling, reviewing, and publishing content across connected platforms."
+  />
+  <meta name="theme-color" content="#0a1b0d" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
 
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="index.html">Prod</a>
+      <a class="brand" href="index.html" aria-label="Prod home">Prod</a>
 
-      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-controls="site-nav"
+        aria-expanded="false"
+      >
+        &#9776;
+      </button>
 
-      <nav class="main-nav">
+      <nav class="main-nav" id="site-nav">
         <a href="#overview">Overview</a>
         <a href="#features">Features</a>
         <a href="#trust">Trust</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms-and-service.html">Terms of Service</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
       </nav>
     </div>
   </header>
@@ -31,7 +43,7 @@ index_html = """<!DOCTYPE html>
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="eyebrow">AGENTIC AI SOCIAL MEDIA MANAGEMENT</span>
+          <p class="eyebrow">AGENTIC AI SOCIAL MEDIA MANAGEMENT</p>
           <h1>Manage, Review, and Publish Content with <span>Prod</span></h1>
           <p class="lead">
             Prod is a modern social media management app built for AI-assisted content operations.
@@ -40,80 +52,82 @@ index_html = """<!DOCTYPE html>
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="terms.html">View Terms</a>
-            <a class="btn btn-secondary" href="privacy.html">View Privacy Policy</a>
+            <a class="btn btn-primary" href="terms-and-service.html">View Terms</a>
+            <a class="btn btn-secondary" href="privacy-policy.html">View Privacy Policy</a>
           </div>
 
           <div class="hero-mini-grid">
-            <div class="mini-card">
+            <article class="mini-card">
               <strong>AI-Assisted Workflows</strong>
               <span>Drafting, routing, review, and publishing support.</span>
-            </div>
-            <div class="mini-card">
+            </article>
+            <article class="mini-card">
               <strong>Connected Accounts</strong>
               <span>Manage authorized actions for linked social platforms.</span>
-            </div>
-            <div class="mini-card">
+            </article>
+            <article class="mini-card">
               <strong>Human Oversight</strong>
               <span>Review content and control publishing decisions.</span>
-            </div>
+            </article>
           </div>
         </div>
 
         <div class="hero-panel">
           <div class="panel-window">
-            <div class="panel-top">
-              <span></span><span></span><span></span>
+            <div class="panel-top" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
 
-            <div class="workflow-card">
+            <section class="workflow-card" aria-label="Product workflow preview">
               <div class="workflow-head">
                 <div>
                   <p class="label">Campaign Status</p>
-                  <h3>Ready for Review</h3>
+                  <h2>Ready for Review</h2>
                 </div>
-                <span class="status-pill">Live Queue</span>
+                <p class="status-pill">Live Queue</p>
               </div>
 
               <div class="metric-row">
-                <div class="metric-card">
+                <article class="metric-card">
                   <p>Scheduled Posts</p>
                   <strong>24</strong>
-                </div>
-                <div class="metric-card">
+                </article>
+                <article class="metric-card">
                   <p>Connected Channels</p>
                   <strong>3</strong>
-                </div>
-                <div class="metric-card">
+                </article>
+                <article class="metric-card">
                   <p>AI Drafts</p>
                   <strong>118</strong>
-                </div>
+                </article>
               </div>
 
               <div class="timeline">
-                <div class="timeline-item active">
-                  <span class="dot"></span>
+                <article class="timeline-item active">
+                  <span class="dot" aria-hidden="true"></span>
                   <div>
                     <strong>Research and ideation</strong>
                     <p>Agent generates draft direction from campaign goals.</p>
                   </div>
-                </div>
-                <div class="timeline-item">
-                  <span class="dot"></span>
+                </article>
+                <article class="timeline-item">
+                  <span class="dot" aria-hidden="true"></span>
                   <div>
                     <strong>Review and compliance</strong>
                     <p>Users check outputs before approving publishing workflows.</p>
                   </div>
-                </div>
-                <div class="timeline-item">
-                  <span class="dot"></span>
+                </article>
+                <article class="timeline-item">
+                  <span class="dot" aria-hidden="true"></span>
                   <div>
                     <strong>Authorized publishing</strong>
                     <p>Connected actions run only after user authorization.</p>
                   </div>
-                </div>
+                </article>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </div>
@@ -121,7 +135,7 @@ index_html = """<!DOCTYPE html>
 
     <section class="trust-band">
       <div class="container trust-band-inner">
-        <div class="badge-glow">✓</div>
+        <div class="badge-glow" aria-hidden="true">&#10003;</div>
         <h2>Built for modern AI-assisted content operations</h2>
         <p>
           Prod is designed for users who want a structured way to handle content planning,
@@ -145,7 +159,7 @@ index_html = """<!DOCTYPE html>
 
       <div class="container feature-grid top-gap">
         <article class="feature-card">
-          <div class="icon-wrap">✦</div>
+          <div class="icon-wrap" aria-hidden="true">&#10022;</div>
           <h3>Content Workflow Support</h3>
           <p>
             Organize content from idea to draft to approval using a centralized dashboard-like
@@ -154,7 +168,7 @@ index_html = """<!DOCTYPE html>
         </article>
 
         <article class="feature-card">
-          <div class="icon-wrap">⚙</div>
+          <div class="icon-wrap" aria-hidden="true">&#9881;</div>
           <h3>Agentic AI Assistance</h3>
           <p>
             Use AI to help with brainstorming, formatting, operational recommendations, and
@@ -163,7 +177,7 @@ index_html = """<!DOCTYPE html>
         </article>
 
         <article class="feature-card">
-          <div class="icon-wrap">🔒</div>
+          <div class="icon-wrap" aria-hidden="true">&#128274;</div>
           <h3>Authorized Account Actions</h3>
           <p>
             Connected account permissions are used to support approved tasks such as publishing,
@@ -172,7 +186,7 @@ index_html = """<!DOCTYPE html>
         </article>
 
         <article class="feature-card">
-          <div class="icon-wrap">📈</div>
+          <div class="icon-wrap" aria-hidden="true">&#128200;</div>
           <h3>Publishing Operations</h3>
           <p>
             Support structured publishing workflows for short-form and social content with room
@@ -210,28 +224,28 @@ index_html = """<!DOCTYPE html>
 
     <section id="trust" class="section light-section">
       <div class="container narrow center-text">
-        <p class="section-kicker">TRUST & TRANSPARENCY</p>
+        <p class="section-kicker">TRUST AND TRANSPARENCY</p>
         <h2>Important product notes</h2>
       </div>
 
       <div class="container split-grid top-gap">
-        <div class="copy-box">
+        <article class="copy-box">
           <h3>Human review matters</h3>
           <p>
             Prod can assist with content operations, but users remain responsible for reviewing
             their content, verifying accuracy, confirming rights to publish media, and complying
             with the rules of any third-party platforms they use.
           </p>
-        </div>
+        </article>
 
-        <div class="copy-box">
+        <article class="copy-box">
           <h3>Clear policy access</h3>
           <p>
             This website includes dedicated Terms of Service and Privacy Policy pages describing
             how the product is intended to be used, what responsibilities remain with the user,
             and how account-related information may be handled.
           </p>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -245,8 +259,8 @@ index_html = """<!DOCTYPE html>
           </p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-primary" href="terms.html">Terms of Service</a>
-          <a class="btn btn-secondary" href="privacy.html">Privacy Policy</a>
+          <a class="btn btn-primary" href="terms-and-service.html">Terms of Service</a>
+          <a class="btn btn-secondary" href="privacy-policy.html">Privacy Policy</a>
         </div>
       </div>
     </section>
@@ -262,17 +276,16 @@ index_html = """<!DOCTYPE html>
       </div>
 
       <div class="footer-links">
-        <a href="terms.html">Terms of Service</a>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms-and-service.html">Terms of Service</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
       </div>
     </div>
 
     <div class="container footer-bottom">
-      <p>© <span id="year"></span> Prod. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> Prod. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-"""
