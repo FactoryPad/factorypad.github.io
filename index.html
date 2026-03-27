@@ -1,39 +1,284 @@
-<!DOCTYPE html>
+from pathlib import Path
+import zipfile, textwrap, os, json, re
+
+base = Path("/mnt/data/prod_site")
+base.mkdir(exist_ok=True)
+
+index_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FactoryPad</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 100px;
-      background: #111;
-      color: white;
-    }
-    a {
-      display: block;
-      margin: 20px;
-      font-size: 20px;
-      color: #4da6ff;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prod | Agentic AI Social Media Management</title>
+  <meta name="description" content="Prod is an agentic AI social media management app for drafting, scheduling, reviewing, and publishing content across connected platforms." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
 
-  <h1>FactoryPad</h1>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">Prod</a>
 
-  <a href="https://factorypad.github.io/terms-and-service.html">
-    Terms of Service
-  </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 
-  <a href="https://factorypad.github.io/privacy-policy.html">
-    Privacy Policy
-  </a>
+      <nav class="main-nav">
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#trust">Trust</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </nav>
+    </div>
+  </header>
 
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">AGENTIC AI SOCIAL MEDIA MANAGEMENT</span>
+          <h1>Manage, Review, and Publish Content with <span>Prod</span></h1>
+          <p class="lead">
+            Prod is a modern social media management app built for AI-assisted content operations.
+            It helps teams and creators organize workflows, review outputs, coordinate publishing,
+            and manage connected platform actions through a clean control interface.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="terms.html">View Terms</a>
+            <a class="btn btn-secondary" href="privacy.html">View Privacy Policy</a>
+          </div>
+
+          <div class="hero-mini-grid">
+            <div class="mini-card">
+              <strong>AI-Assisted Workflows</strong>
+              <span>Drafting, routing, review, and publishing support.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Connected Accounts</strong>
+              <span>Manage authorized actions for linked social platforms.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Human Oversight</strong>
+              <span>Review content and control publishing decisions.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="panel-window">
+            <div class="panel-top">
+              <span></span><span></span><span></span>
+            </div>
+
+            <div class="workflow-card">
+              <div class="workflow-head">
+                <div>
+                  <p class="label">Campaign Status</p>
+                  <h3>Ready for Review</h3>
+                </div>
+                <span class="status-pill">Live Queue</span>
+              </div>
+
+              <div class="metric-row">
+                <div class="metric-card">
+                  <p>Scheduled Posts</p>
+                  <strong>24</strong>
+                </div>
+                <div class="metric-card">
+                  <p>Connected Channels</p>
+                  <strong>3</strong>
+                </div>
+                <div class="metric-card">
+                  <p>AI Drafts</p>
+                  <strong>118</strong>
+                </div>
+              </div>
+
+              <div class="timeline">
+                <div class="timeline-item active">
+                  <span class="dot"></span>
+                  <div>
+                    <strong>Research and ideation</strong>
+                    <p>Agent generates draft direction from campaign goals.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="dot"></span>
+                  <div>
+                    <strong>Review and compliance</strong>
+                    <p>Users check outputs before approving publishing workflows.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="dot"></span>
+                  <div>
+                    <strong>Authorized publishing</strong>
+                    <p>Connected actions run only after user authorization.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-band">
+      <div class="container trust-band-inner">
+        <div class="badge-glow">✓</div>
+        <h2>Built for modern AI-assisted content operations</h2>
+        <p>
+          Prod is designed for users who want a structured way to handle content planning,
+          approvals, scheduling, and publishing while keeping account access and platform
+          actions transparent and controlled.
+        </p>
+      </div>
+    </section>
+
+    <section id="overview" class="section light-section">
+      <div class="container narrow center-text">
+        <p class="section-kicker">OVERVIEW</p>
+        <h2>What Prod does</h2>
+        <p class="section-copy">
+          Prod combines workflow organization, agentic AI assistance, and publishing tools into
+          one product experience. The platform can help generate content ideas, prepare drafts,
+          support scheduling logic, coordinate review flows, and execute authorized publishing
+          actions for connected social media accounts.
+        </p>
+      </div>
+
+      <div class="container feature-grid top-gap">
+        <article class="feature-card">
+          <div class="icon-wrap">✦</div>
+          <h3>Content Workflow Support</h3>
+          <p>
+            Organize content from idea to draft to approval using a centralized dashboard-like
+            experience built for recurring publishing pipelines.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-wrap">⚙</div>
+          <h3>Agentic AI Assistance</h3>
+          <p>
+            Use AI to help with brainstorming, formatting, operational recommendations, and
+            workflow handoffs while preserving user control over final actions.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-wrap">🔒</div>
+          <h3>Authorized Account Actions</h3>
+          <p>
+            Connected account permissions are used to support approved tasks such as publishing,
+            scheduling, metadata preparation, and related app functionality.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="icon-wrap">📈</div>
+          <h3>Publishing Operations</h3>
+          <p>
+            Support structured publishing workflows for short-form and social content with room
+            for operational review, queue management, and ongoing refinement.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="features" class="section dark-section">
+      <div class="container narrow center-text">
+        <p class="section-kicker">FEATURES</p>
+        <h2>Why teams may use Prod</h2>
+        <p class="section-copy section-copy-light">
+          Prod is intended for creators, operators, and teams who want AI-supported content
+          management without losing visibility into what the system is doing.
+        </p>
+      </div>
+
+      <div class="container card-row">
+        <article class="info-card">
+          <h3>Review-first design</h3>
+          <p>Drafts and workflows can be reviewed before publishing actions are approved.</p>
+        </article>
+        <article class="info-card">
+          <h3>Connected platform management</h3>
+          <p>Users can link supported accounts and use the app for permitted workflow actions.</p>
+        </article>
+        <article class="info-card">
+          <h3>Operational flexibility</h3>
+          <p>Useful for content planning, queue setup, and multi-step publishing processes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="trust" class="section light-section">
+      <div class="container narrow center-text">
+        <p class="section-kicker">TRUST & TRANSPARENCY</p>
+        <h2>Important product notes</h2>
+      </div>
+
+      <div class="container split-grid top-gap">
+        <div class="copy-box">
+          <h3>Human review matters</h3>
+          <p>
+            Prod can assist with content operations, but users remain responsible for reviewing
+            their content, verifying accuracy, confirming rights to publish media, and complying
+            with the rules of any third-party platforms they use.
+          </p>
+        </div>
+
+        <div class="copy-box">
+          <h3>Clear policy access</h3>
+          <p>
+            This website includes dedicated Terms of Service and Privacy Policy pages describing
+            how the product is intended to be used, what responsibilities remain with the user,
+            and how account-related information may be handled.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section footer-cta">
+      <div class="container cta-box">
+        <div>
+          <p class="section-kicker">LEGAL PAGES</p>
+          <h2>Review the current policy pages</h2>
+          <p>
+            For app review and public disclosure purposes, the current legal pages are available below.
+          </p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="terms.html">Terms of Service</a>
+          <a class="btn btn-secondary" href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <a class="brand footer-brand" href="index.html">Prod</a>
+        <p class="footer-copy">
+          Agentic AI social media management for drafting, review, scheduling, and publishing workflows.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> Prod. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
+"""
