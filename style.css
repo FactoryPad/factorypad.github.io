@@ -630,6 +630,18 @@ select {
   color: #9fe4a0;
 }
 
+.legal-card pre {
+  margin: 18px 0 0;
+  padding: 16px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #d6e1d3;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .legal-note {
   margin-top: 28px;
   padding: 18px;
